@@ -1,6 +1,6 @@
 package com.company;
 
-public class Main {
+public class Lambda implements PorDefecto {
 
     public static void main(String[] args) {
 
@@ -41,5 +41,14 @@ public class Main {
             return a;
         };
         System.out.println(suma2.suma(1, 1));
+
+        Lambda l = new Lambda();
+
+        System.out.println(l.nombrePorDefecto("Juan"));
+    }
+
+    @Override
+    public void mostrarNombre(String nombre) {
+
     }
 }

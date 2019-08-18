@@ -31,6 +31,14 @@ public class StreamPrueba {
                 .filter(user -> user.getId() < 3)
                 .collect(Collectors.toList());
         userFilter.stream().forEach(user -> System.out.println(user.getId() + " " + user.getName()));
+
+        System.out.println("------------------------------find first ------------------------");
+        setUpUser();
+        User user = users.stream()
+                .filter(user1 -> user1.getName().equals("Alberto"))
+                .findFirst()
+                .orElse(null);
+        System.out.println(user.getId() + " " + user.getName());
     }
 
     private static void imprimirLista() {

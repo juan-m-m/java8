@@ -59,6 +59,13 @@ public class StreamPrueba {
                 .peek(user1 -> user1.setName(user1.getName() + " " + "apellido")).collect(Collectors.toList());
         users2.stream().forEach(user1 -> System.out.println(user1.getName()));
 
+        System.out.println("------------------------------count------------------------");
+        long numeroFiltrado = users.stream()
+                .filter(user1 -> user1.getId() < 3)
+                .count();
+        System.out.println(numeroFiltrado);
+
+
     }
 
     private static void imprimirLista() {

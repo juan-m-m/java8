@@ -1,6 +1,7 @@
 package com.company.stream;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -39,6 +40,19 @@ public class StreamPrueba {
                 .findFirst()
                 .orElse(null);
         System.out.println(user.getId() + " " + user.getName());
+
+        //flatMap
+
+        List<List<String>> nombresVariasListas = new ArrayList<List<String>>(
+                Arrays.asList(
+                        new ArrayList<String>(Arrays.asList("Alberto", "Maria", "Pedro")),
+                        new ArrayList<String>(Arrays.asList("Monica", "Pablo"))
+                )
+        );
+        List<String> nombreUnicaLista = nombresVariasListas.stream()
+                .flatMap(lista -> lista.stream())
+                .collect(Collectors.toList());
+        nombreUnicaLista.stream().forEach(listunica -> System.out.println(listunica));
     }
 
     private static void imprimirLista() {

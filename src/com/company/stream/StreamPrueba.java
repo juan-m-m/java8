@@ -64,6 +64,16 @@ public class StreamPrueba {
                 .filter(user1 -> user1.getId() < 3)
                 .count();
         System.out.println(numeroFiltrado);
+        System.out.println("------------------------------skip and limit ------------------------");
+
+        String[] abc = {"a", "b", "c", "d", "e", "f", "g", "h", "i"};
+
+        List<String> abcFilter = Arrays.stream(abc)
+                .skip(2)
+                .limit(4)
+                .collect(Collectors.toList());
+        abcFilter.stream().forEach(e -> System.out.println(e));
+
 
 
     }

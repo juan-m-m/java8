@@ -53,6 +53,12 @@ public class StreamPrueba {
                 .flatMap(lista -> lista.stream())
                 .collect(Collectors.toList());
         nombreUnicaLista.stream().forEach(listunica -> System.out.println(listunica));
+
+        System.out.println("------------------------------peek ------------------------");
+        List<User> users2 = users.stream()
+                .peek(user1 -> user1.setName(user1.getName() + " " + "apellido")).collect(Collectors.toList());
+        users2.stream().forEach(user1 -> System.out.println(user1.getName()));
+
     }
 
     private static void imprimirLista() {

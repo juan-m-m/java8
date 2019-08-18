@@ -9,7 +9,8 @@ public class OptionalPrueba {
 
     public static void main(String[] args) {
         // pruebaOptional(null);
-        orElseOptional(null);
+        //orElseOptional(null);
+        orElseThtow(null);
     }
 
     public static void pruebaOptional(String name) {
@@ -30,5 +31,13 @@ public class OptionalPrueba {
 
         System.out.println(nombreOfNullable);
         //System.out.println(nombreOF);
+    }
+
+    public static void orElseThtow(String nombre) {
+        Optional<String> optional = Optional.ofNullable(nombre);
+
+        optional.orElseThrow(NullPointerException::new);
+        String nombre1 = optional.get();
+        System.out.println(nombre1);
     }
 }

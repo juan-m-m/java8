@@ -23,6 +23,14 @@ public class StreamPrueba {
         //Map Collector.toList
         List<String> list = users.stream().map(user -> user.getName()).collect(Collectors.toList());
         list.stream().forEach(userName -> System.out.println(userName));
+
+        //filter
+        setUpUser();
+        List<User> userFilter = users.stream()
+                .filter(user -> user.getName() != "Alberto")
+                .filter(user -> user.getId() < 3)
+                .collect(Collectors.toList());
+        userFilter.stream().forEach(user -> System.out.println(user.getId() + " " + user.getName()));
     }
 
     private static void imprimirLista() {

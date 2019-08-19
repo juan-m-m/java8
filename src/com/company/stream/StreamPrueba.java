@@ -103,6 +103,19 @@ public class StreamPrueba {
                 .collect(Collectors.toList());
         listDistint.stream().forEach(e -> System.out.println(e));
 
+        System.out.println("------------------------------allMach anyMach noneMach------------------------");
+        List<Integer> listNumeros = Arrays.asList(100, 300, 900, 5000);
+
+        boolean allMach = listNumeros.stream().allMatch(e -> e > 301);
+        System.out.println(allMach);
+
+        boolean anyMach = listNumeros.stream().anyMatch(e -> e > 301);
+        System.out.println(anyMach);
+
+        boolean noneMach = listNumeros.stream().noneMatch(e -> e > 10000);
+        System.out.println(noneMach);
+
+
 
 
 

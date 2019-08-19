@@ -95,6 +95,17 @@ public class StreamPrueba {
                 .orElse(null);
         System.out.println(userMax.getId());
 
+        System.out.println("------------------------------distint------------------------");
+        String[] abc1 = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "a", "c"};
+
+        List<String> listDistint = Arrays.stream(abc1)
+                .distinct()
+                .collect(Collectors.toList());
+        listDistint.stream().forEach(e -> System.out.println(e));
+
+
+
+
     }
 
     private static void imprimirLista() {

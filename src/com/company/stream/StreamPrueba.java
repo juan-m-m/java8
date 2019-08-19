@@ -2,6 +2,7 @@ package com.company.stream;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -74,6 +75,13 @@ public class StreamPrueba {
                 .collect(Collectors.toList());
         abcFilter.stream().forEach(e -> System.out.println(e));
 
+        System.out.println("------------------------------sorted ------------------------");
+
+        setUpUser();
+        users = users.stream()
+                .sorted(Comparator.comparing(User::getName))
+                .collect(Collectors.toList());
+        imprimirLista();
 
 
     }

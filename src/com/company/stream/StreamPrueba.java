@@ -155,7 +155,15 @@ public class StreamPrueba {
                 .mapToDouble(User::getId)
                 .summaryStatistics();
         System.out.println(statistics.getAverage() + " " + statistics.getMax() + " " + statistics.getMin() + " " + statistics.getCount());
+        System.out.println(statistics.getAverage() + " " + statistics.getMax() + " " + statistics.getMin() + " " + statistics.getCount());
 
+        System.out.println("------------------------------ partitioningBy------------------------");
+        setUpUser();
+        List<Integer> numeros = Arrays.asList(5, 7, 34, 56, 2, 3, 67, 4, 98);
+        Map<Boolean, List<Integer>> esMayor = numeros.stream()
+                .collect(Collectors.partitioningBy(e -> e > 10));
+        esMayor.get(true).stream().forEach(e -> System.out.println(e));
+        esMayor.get(false).stream().forEach(e -> System.out.println(e));
     }
 
     private static void imprimirLista() {

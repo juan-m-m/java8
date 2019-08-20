@@ -144,6 +144,18 @@ public class StreamPrueba {
                 .map(User::getName)
                 .collect(Collectors.toSet());
         setNames.stream().forEach(e -> System.out.println(e));
+
+        System.out.println("------------------------------ summarizingDouble------------------------");
+        setUpUser();
+        DoubleSummaryStatistics statistics = users.stream()
+                .collect(Collectors.summarizingDouble(User::getId));
+        System.out.println(statistics.getAverage() + " " + statistics.getMax() + " " + statistics.getMin() + " " + statistics.getCount());
+
+        DoubleSummaryStatistics statistics1 = users.stream()
+                .mapToDouble(User::getId)
+                .summaryStatistics();
+        System.out.println(statistics.getAverage() + " " + statistics.getMax() + " " + statistics.getMin() + " " + statistics.getCount());
+
     }
 
     private static void imprimirLista() {

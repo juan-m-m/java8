@@ -178,6 +178,27 @@ public class StreamPrueba {
         List<String> personas = users.stream()
                 .collect(Collectors.mapping(User::getName, Collectors.toList()));
         personas.stream().forEach(e -> System.out.println(e));
+
+        System.out.println("------------------------------ stream paralelo------------------------");
+        setUpUser();
+        long tiempo1 = System.currentTimeMillis();
+        list.stream().forEach(e -> convertirMayuscula(e));
+        long tiempo2 = System.currentTimeMillis();
+        System.out.println("normal " + (tiempo2 - tiempo1));
+        tiempo1 = System.currentTimeMillis();
+        list.parallelStream().forEach(e -> convertirMayuscula(e));
+        tiempo2 = System.currentTimeMillis();
+        System.out.println("paralelo " + (tiempo2 - tiempo1));
+
+    }
+
+    private static String convertirMayuscula(String nombre) {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return nombre.toUpperCase();
     }
 
     private static void imprimirLista() {

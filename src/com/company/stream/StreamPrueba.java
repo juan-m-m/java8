@@ -164,6 +164,20 @@ public class StreamPrueba {
                 .collect(Collectors.partitioningBy(e -> e > 10));
         esMayor.get(true).stream().forEach(e -> System.out.println(e));
         esMayor.get(false).stream().forEach(e -> System.out.println(e));
+
+        System.out.println("------------------------------ groupingBy------------------------");
+        setUpUser();
+        Map<Character, List<User>> grupoAlfabetico = users.stream()
+                .collect(Collectors.groupingBy(e -> new Character(e.getName().charAt(0))));
+        grupoAlfabetico.get('A').stream().forEach(e -> System.out.println(e.getName()));
+        grupoAlfabetico.get('M').stream().forEach(e -> System.out.println(e.getName()));
+        grupoAlfabetico.get('P').stream().forEach(e -> System.out.println(e.getName()));
+
+        System.out.println("------------------------------ mapping------------------------");
+        setUpUser();
+        List<String> personas = users.stream()
+                .collect(Collectors.mapping(User::getName, Collectors.toList()));
+        personas.stream().forEach(e -> System.out.println(e));
     }
 
     private static void imprimirLista() {

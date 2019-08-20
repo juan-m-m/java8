@@ -134,6 +134,16 @@ public class StreamPrueba {
                 .map(User::getId)
                 .reduce(100, Integer::sum);
         System.out.println(numero);
+
+        System.out.println("------------------------------joining------------------------");
+        setUpUser();
+        String names = users.stream()
+                .map(User::getName)
+                .collect(Collectors.joining(" - "))
+                .toString();
+        System.out.println(names);
+        System.out.println("------------------------------ toSet ------------------------");
+
     }
 
     private static void imprimirLista() {

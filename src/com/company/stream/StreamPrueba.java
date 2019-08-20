@@ -1,9 +1,6 @@
 package com.company.stream;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -143,7 +140,10 @@ public class StreamPrueba {
                 .toString();
         System.out.println(names);
         System.out.println("------------------------------ toSet ------------------------");
-
+        Set<String> setNames = users.stream()
+                .map(User::getName)
+                .collect(Collectors.toSet());
+        setNames.stream().forEach(e -> System.out.println(e));
     }
 
     private static void imprimirLista() {

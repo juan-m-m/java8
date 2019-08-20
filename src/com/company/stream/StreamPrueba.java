@@ -128,6 +128,12 @@ public class StreamPrueba {
         System.out.println(result);
         System.out.println(IntStream.range(0, 100).sum());
 
+        System.out.println("------------------------------Reduce------------------------");
+        setUpUser();
+        int numero = users.stream()
+                .map(User::getId)
+                .reduce(100, Integer::sum);
+        System.out.println(numero);
     }
 
     private static void imprimirLista() {

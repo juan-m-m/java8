@@ -1,5 +1,8 @@
 package com.company.stream;
 
+import com.company.Test1;
+import com.company.Test2;
+
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -55,7 +58,8 @@ public class StreamPrueba {
 
         System.out.println("------------------------------peek ------------------------");
         List<User> users2 = users.stream()
-                .peek(user1 -> user1.setName(user1.getName() + " " + "apellido")).collect(Collectors.toList());
+                .peek(user1 -> user1.setName(user1.getName() + " " + "apellido"))
+                .collect(Collectors.toList());
         users2.stream().forEach(user1 -> System.out.println(user1.getName()));
 
         System.out.println("------------------------------count------------------------");
@@ -189,6 +193,20 @@ public class StreamPrueba {
         list.parallelStream().forEach(e -> convertirMayuscula(e));
         tiempo2 = System.currentTimeMillis();
         System.out.println("paralelo " + (tiempo2 - tiempo1));
+
+        System.out.println("--------------------------------unit 2 listas------------------------------------------");
+
+        List<Test1> list1 = new ArrayList<>();
+        list1.add(new Test1("Juan", "montano"));
+        list1.add(new Test1("pepe", "pepi"));
+
+        List<Test2> list2 = Arrays.asList(new Test2("pedrillo", "peres"), new Test2("carlos", "manzel"));
+
+        list2.stream()
+                .map(e -> new Test1(e.getNombre(), e.getApellido()))
+                .forEach(list1::add);
+
+        list1.stream().forEach(e -> System.out.println(e.getNombre()));
 
     }
 

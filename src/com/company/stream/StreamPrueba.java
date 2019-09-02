@@ -1,8 +1,5 @@
 package com.company.stream;
 
-import com.company.Test1;
-import com.company.Test2;
-
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -183,50 +180,52 @@ public class StreamPrueba {
                 .collect(Collectors.mapping(User::getName, Collectors.toList()));
         personas.stream().forEach(e -> System.out.println(e));
 
-        System.out.println("------------------------------ stream paralelo------------------------");
-        setUpUser();
-        long tiempo1 = System.currentTimeMillis();
-        list.stream().forEach(e -> convertirMayuscula(e));
-        long tiempo2 = System.currentTimeMillis();
-        System.out.println("normal " + (tiempo2 - tiempo1));
-        tiempo1 = System.currentTimeMillis();
-        list.parallelStream().forEach(e -> convertirMayuscula(e));
-        tiempo2 = System.currentTimeMillis();
-        System.out.println("paralelo " + (tiempo2 - tiempo1));
-
-        System.out.println("--------------------------------unit 2 listas------------------------------------------");
-
-        List<Test1> list1 = new ArrayList<>();
-        list1.add(new Test1("Juan", "montano"));
-        list1.add(new Test1("pepe", "pepi"));
-
-        List<Test2> list2 = Arrays.asList(new Test2("pedrillo", "peres"), new Test2("carlos", "manzel"));
-
-        list2.stream()
-                .map(e -> new Test1(e.getNombre(), e.getApellido()))
-                .forEach(list1::add);
-
-        list1.stream().forEach(e -> System.out.println(e.getNombre()));
+//        System.out.println("------------------------------ stream paralelo------------------------");
+//        setUpUser();
+//        long tiempo1 = System.currentTimeMillis();
+//        list.stream().forEach(e -> convertirMayuscula(e));
+//        long tiempo2 = System.currentTimeMillis();
+//        System.out.println("normal " + (tiempo2 - tiempo1));
+//        tiempo1 = System.currentTimeMillis();
+//        list.parallelStream().forEach(e -> convertirMayuscula(e));
+//        tiempo2 = System.currentTimeMillis();
+//        System.out.println("paralelo " + (tiempo2 - tiempo1));
+//
+//        System.out.println("--------------------------------unit 2 listas------------------------------------------");
+//
+//        List<Test1> list1 = new ArrayList<>();
+//        list1.add(new Test1("Juan", "montano"));
+//        list1.add(new Test1("pepe", "pepi"));
+//
+//        List<Test2> list2 = Arrays.asList(new Test2("pedrillo", "peres"), new Test2("carlos", "manzel"));
+//
+//        list2.stream()
+//                .map(e -> new Test1(e.getNombre(), e.getApellido()))
+//                .forEach(list1::add);
+//
+//        list1.stream().forEach(e -> System.out.println(e.getNombre()));
 
         System.out.println("--------------------------------convertir una String a list------------------------------------------");
 
         String cadena = "java, angular,,sql";
-        List<String> listString = Arrays.asList(cadena.replace(" ", "").split(","))
+        List<String> listString = Arrays.asList(cadena.replaceAll("[-+.^:,\\s]", ""))
                 .stream()
-                .map(String::valueOf)
+                .map(e -> new String(e))
                 .collect(Collectors.toList());
 
-        System.out.println(listString);
+        listString.stream().forEach(e -> System.out.println(e));
+        System.out.println(listString.size());
 
         List<String> intList = Stream
-                .of(cadena.split(", "))
-                .map(String::valueOf)
+                .of(cadena.replaceAll("[-+.^:,\\s]", " ").split("  "))
+                .map(e -> new String(e))
                 .collect(Collectors.toList());
-        System.out.println(intList);
+        intList.stream().forEach(e -> System.out.println(e + "\n"));
+        System.out.println(intList.size());
 
         System.out.println("--------------------------------unir string------------------------------------------");
         String lastName = null;
-        String joined = Stream.of("juan", null, "montano")
+        String joined = Stream.of("juan", lastName, "montano")
                 .filter(s -> s != null && !s.isEmpty())
                 .collect(Collectors.joining(" "));
         System.out.println(joined);

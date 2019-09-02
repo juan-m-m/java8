@@ -208,6 +208,28 @@ public class StreamPrueba {
 
         list1.stream().forEach(e -> System.out.println(e.getNombre()));
 
+        System.out.println("--------------------------------convertir una String a list------------------------------------------");
+
+        String cadena = "java, angular,,sql";
+        List<String> listString = Arrays.asList(cadena.replace(" ", "").split(","))
+                .stream()
+                .map(String::valueOf)
+                .collect(Collectors.toList());
+
+        System.out.println(listString);
+
+        List<String> intList = Stream
+                .of(cadena.split(", "))
+                .map(String::valueOf)
+                .collect(Collectors.toList());
+        System.out.println(intList);
+
+        System.out.println("--------------------------------unir string------------------------------------------");
+        String lastName = null;
+        String joined = Stream.of("juan", null, "montano")
+                .filter(s -> s != null && !s.isEmpty())
+                .collect(Collectors.joining(" "));
+        System.out.println(joined);
     }
 
     private static String convertirMayuscula(String nombre) {
